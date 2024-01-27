@@ -1,4 +1,9 @@
-export const Colors = 
+import { createContext } from 'react';
+
+export const APP_NAME_SHORT = "NirVo"
+export const APP_NAME = "Nirvana Flow"
+
+export const THEMES = 
 {
 	light: {
 		primary: "#ffffff",
@@ -22,3 +27,5 @@ export const Colors =
 		category: "#3DB9F7",
 	},
 };
+
+export const ThemeContext = createContext(THEMES.dark);

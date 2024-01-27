@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import {
 	SafeAreaView,
 	View,
@@ -11,20 +11,18 @@ import { MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 
 // Theme/Colors
-import { Colors } from "../Config";
-import { ThemeContext } from "../Util";
+import { ThemeContext } from "../Config";
 
 // Components
 import CustomButton from "../components/CustomButton";
 import InputField from "../components/InputField";
 
 const LoginScreen = ({ navigation }) => {
-	const { theme } = useContext(ThemeContext);
-	let activeColors = Themes[theme.mode];
+	const { theme } = React.useContext(ThemeContext);
 
 	return (
 		<SafeAreaView style={{
-			backgroundColor: activeColors.primary,
+			backgroundColor: theme.primary,
 			flex: 1,
 			justifyContent: "center",
 		}}>
@@ -34,20 +32,20 @@ const LoginScreen = ({ navigation }) => {
 				<Text style={{
 					fontSize: 28,
 					fontWeight: "500",
-					color: activeColors.tint,
+					color: theme.tint,
 					marginBottom: 15,
 				}}>Reset Your Password</Text>
 
 				{/* Paragraph */}
 				<Text style={{
 					fontSize: 16,
-					color: activeColors.text,
+					color: theme.text,
 					marginBottom: 30,
 				}}>Uh oh! Tell us the email associated with your account, and we'll send you an email to change your password.</Text>
 
 				{/* Email Address Input Box */}
 				<InputField
-					selectionColor={activeColors.tint}
+					selectionColor={theme.tint}
 					label={"Email Address"}
 					icon={
 						<MaterialIcons
@@ -74,3 +72,4 @@ const LoginScreen = ({ navigation }) => {
 };
 
 export default LoginScreen;
+

@@ -1,23 +1,20 @@
-import React, { useContext } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import DashboardScreen from "../screens/DashboardScreen";
 
 // Theme/Colors
-import { Colors } from "../Config";
-import { ThemeContext } from "../Util";
+import { ThemeContext } from "../Config";
 
 const Tab = createBottomTabNavigator();
 
 export default function Footer() {
-	const { theme, updateTheme } = useContext(ThemeContext);
-	let activeColors = Colors[theme.mode];
+	const { theme } = React.useContext(ThemeContext);
 
 	return (
 		<Tab.Navigator
 			screenOptions={({ route }) => ({
 
-				tabBarStyle: { backgroundColor: activeColors.secondary, },
+				tabBarStyle: { backgroundColor: theme.secondary, },
 
 				headerShown: true,
 
@@ -45,9 +42,9 @@ export default function Footer() {
 				},
 
 				// Tab Bar Settings
-				tabBarActiveTintColor: activeColors.accent,
-				tabBarInactiveTintColor: activeColors.tertiary,
-				tabBarStyle: { backgroundColor: activeColors.secondary, },
+				tabBarActiveTintColor: theme.accent,
+				tabBarInactiveTintColor: theme.tertiary,
+				tabBarStyle: { backgroundColor: theme.secondary, },
 
 				// Header Settings
 				headerTitleAlign: "left",
@@ -55,8 +52,8 @@ export default function Footer() {
 					paddingLeft: 10,
 					fontSize: 24,
 				},
-				headerStyle: { backgroundColor: activeColors.secondary, },
-				headerTintColor: activeColors.tint,
+				headerStyle: { backgroundColor: theme.secondary, },
+				headerTintColor: theme.tint,
 			})}
 		>
 			<Tab.Screen name="Dashboard" component={DashboardScreen} />

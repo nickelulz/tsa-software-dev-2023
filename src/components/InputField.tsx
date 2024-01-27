@@ -1,9 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import { View, Text, TouchableOpacity, TextInput } from "react-native";
 
 // Theme/Colors
-import { Colors } from "../Config";
-import { ThemeContext } from "../Util";
+import { ThemeContext } from "../Config";
 
 export default function InputField({
 	label,
@@ -13,8 +12,7 @@ export default function InputField({
 	fieldButtonLabel,
 	fieldButtonFunction,
 }) {
-	const { theme } = useContext(ThemeContext);
-	let activeColors = Colors[theme.mode];
+	const { theme } = React.useContext(ThemeContext);
 
 	return (
 		<View
@@ -29,24 +27,24 @@ export default function InputField({
 			{icon}
 			{inputType == "password" ? (
 				<TextInput
-					placeholderTextColor={activeColors.text}
+					placeholderTextColor={theme.text}
 					placeholder={label}
-					keyboardAppearance={activeColors.primary}
+					keyboardAppearance={theme.primary}
 					keyboardType={keyboardType}
-					style={{ flex: 1, paddingVertical: 0, color: activeColors.tint }}
+					style={{ flex: 1, paddingVertical: 0, color: theme.tint }}
 					secureTextEntry={true}
 				/>
 			) : (
 				<TextInput
-					placeholderTextColor={activeColors.text}
+					placeholderTextColor={theme.text}
 					placeholder={label}
-					keyboardAppearance={activeColors.primary}
+					keyboardAppearance={theme.primary}
 					keyboardType={keyboardType}
-					style={{ flex: 1, paddingVertical: 0, color: activeColors.tint }}
+					style={{ flex: 1, paddingVertical: 0, color: theme.tint }}
 				/>
 			)}
 			<TouchableOpacity onPress={fieldButtonFunction}>
-				<Text style={{ color: activeColors.accent, fontWeight: "700" }}>
+				<Text style={{ color: theme.accent, fontWeight: "700" }}>
 					{fieldButtonLabel}
 				</Text>
 			</TouchableOpacity>

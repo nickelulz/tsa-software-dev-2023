@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import { Appearance } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import * as SplashScreen from "expo-splash-screen";
 
-import { storeData, getData } from "./src/ClientDataAPI";
+import { ThemeContext } from './src/Config'
 import Footer from "./src/components/Footer";
-import { ThemeContext } from "./src/Util";
 
 // Screens
-import DashboardScreen from './src/screens/DashboardScreen'
 import LoginScreen from './src/screens/LoginScreen'
 import RegisterScreen from './src/screens/RegisterScreen'
 import ForgotScreen from './src/screens/ForgotScreen'
@@ -26,15 +24,15 @@ SplashScreen.preventAutoHideAsync();
 const Stack = createStackNavigator();
 
 const App = () => {
-	/* 
-	 * Appearance.getColorScheme() will return the current 
+	/*
+	 * Appearance.getColorScheme() will return the current
 	 * theme of the device and save it in theme state.
 	 */
 	const [theme, setTheme] = useState({ mode: Appearance.getColorScheme() });
 
-	/* 
-	 * Takes newTheme as a parameter if newTheme 
-	 * is not passed then it will toggle the theme and store the 
+	/*
+	 * Takes newTheme as a parameter if newTheme
+	 * is not passed then it will toggle the theme and store the
 	 * new theme in async storage
 	 */
 	const updateTheme = (newTheme) => {
@@ -46,8 +44,7 @@ const App = () => {
 		}
 
 		setTheme(newTheme);
-		storeData("homeTheme", newTheme);
-		
+		storeData("homeTheme", newTheme);	
 	};
 
 	/*
@@ -61,12 +58,12 @@ const App = () => {
 
 			if (themeData) {
 				updateTheme(themeData);
-			}	
-		} 
+			}
+		}
 
 		catch ({ message }) {
-			alert(message);	
-		} 
+			alert(message);
+		}
 
 		finally {
 			// Hides the splash screen after 1 second
@@ -90,8 +87,8 @@ const App = () => {
 
 	return (
 		/*
-		 * Passes the theme and updateTheme function to the 
-		 * ThemeContext.Provider so that it can be used in 
+		 * Passes the theme and updateTheme function to the
+		 * ThemeContext.Provider so that it can be used in
 		 * all the screens of the app.
 		 */
 		<ThemeContext.Provider value={{ theme, updateTheme }}>
@@ -99,8 +96,8 @@ const App = () => {
 
 				{/*
 				  * Navigator registration -- allows for each screen to
-				  * be accessed by the viewer when linked by a button or 
-				  * link or etc. 
+				  * be accessed by the viewer when linked by a button or
+				  * link or etc.
 				  */}
 				<Stack.Navigator initialRouteName="Login">
 
@@ -130,13 +127,6 @@ const App = () => {
 						options={{ headerShown: false }}
 						name="Footer"
 						component={Footer}
-					/>					
-
-					{/* Dashboard Screen */}
-					<Stack.Screen
-						options={{ headerShown: false }}
-						name="Dashboard"
-						component={DashboardScreen}
 					/>
 
 				</Stack.Navigator>

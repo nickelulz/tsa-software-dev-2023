@@ -1,25 +1,22 @@
-import React, { useContext } from "react";
+import React from 'react';
 
-// Components
 import CustomButton from "../components/CustomButton";
 import InputField from "../components/InputField";
 import { SafeAreaView, View, Text, TouchableOpacity, Image } from "react-native";
 
 // Theme/Colors
-import { Colors } from "../Config";
-import { ThemeContext } from "../Util";
+import { ThemeContext, APP_NAME } from "../Config";
 
 // Icons
 import { MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 
 const LoginScreen = ({ navigation }) => {
-	const { theme } = useContext(ThemeContext);
-	let activeColors = Colors[theme.mode];
+	const { theme } = React.useContext(ThemeContext);
 
 	return (
 		<SafeAreaView style={{
-			backgroundColor: activeColors.primary,
+			backgroundColor: theme.primary,
 			flex: 1,
 			justifyContent: "center",
 		}}>
@@ -27,7 +24,7 @@ const LoginScreen = ({ navigation }) => {
 
 			<View style={{ alignItems: "center" }}>
 				<Image
-					source={require("../assets/logo-large.png")}
+					source={require("../assets/nirvo-logo.png")}
 					style={{
 						height: 200,
 						width: 300,
@@ -38,13 +35,13 @@ const LoginScreen = ({ navigation }) => {
 				<Text style={{
 					fontSize: 28,
 					fontWeight: "500",
-					color: activeColors.tint,
+					color: theme.tint,
 					marginBottom: 30,
 					textAlign: "center",
-				}}> Welcome Back! </Text>
+				}}> Returning Users </Text>
 
 				<InputField
-					selectionColor={activeColors.tint}
+					selectionColor={theme.tint}
 					label={"User ID"}
 					icon={
 						<FontAwesome5
@@ -84,9 +81,11 @@ const LoginScreen = ({ navigation }) => {
 					justifyContent: "center",
 					marginBottom: 30,
 				}}>
-					<Text style={{ color: activeColors.tint }}>New to <Text style={{ fontWeight: "500" }}>GradeStakes</Text>? </Text>
+					<Text style={{ color: theme.tint }}>
+						New to <Text style={{ fontWeight: "500" }}>{APP_NAME}</Text>
+					</Text>
 					<TouchableOpacity onPress={() => navigation.navigate("Register")}>
-						<Text style={{ color: activeColors.accent, fontWeight: "700" }}>
+						<Text style={{ color: theme.accent, fontWeight: "700" }}>
 							{" "}
 							Register
 						</Text>

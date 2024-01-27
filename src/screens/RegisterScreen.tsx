@@ -3,8 +3,7 @@ import React, { useState, useContext } from "react";
 // Theming
 import { MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
-import { Colors } from "../Config";
-import { ThemeContext } from "../Util";
+import { ThemeContext, Colors, APP_NAME, APP_NAME_SHORT } from "../Config";
 
 // Components
 import { SafeAreaView, View, Text, TouchableOpacity, Image } from "react-native";
@@ -14,14 +13,10 @@ import InputField from "../components/InputField";
 
 const Register = ({ navigation }) => {
 	const { theme } = useContext(ThemeContext);
-	let activeColors = Themes[theme.mode];
+	let activeColors = Colors[theme.mode];
 
 	const [open, setOpen] = useState(false);
 	const [value, setValue] = useState(null);
-	const [items, setItems] = useState([
-		{label: 'CFISD', value: 'home-access.cfisd.net'},
-		{label: 'Katy ISD', value: 'homeaccess.katyisd.org'}
-	]);
 
 	return (
 		<SafeAreaView
@@ -38,11 +33,11 @@ const Register = ({ navigation }) => {
 					fontWeight: "500",
 					color: activeColors.tint,
 					marginBottom: 30,
-				}}>Create an account with GradeStakes!</Text>
+				}}>Create an account with {APP_NAME}!</Text>
 
 				<InputField
 					selectionColor={activeColors.tint}
-					label={"HAC User ID"}
+					label={"Email Addressz"}
 					icon={
 						<FontAwesome5
 							name="hashtag"
@@ -55,7 +50,7 @@ const Register = ({ navigation }) => {
 				/>
 
 				<InputField
-					label={"HAC Password"}
+					label={"Password"}
 					icon={
 						<Ionicons
 							name="ios-lock-closed-outline"
@@ -66,17 +61,6 @@ const Register = ({ navigation }) => {
 					}
 					inputType="password"
 				/> 
-
-				<DropDownPicker
-					open={open}
-					value={value}
-					items={items}
-					setOpen={setOpen}
-					setValue={setValue}
-					setItems={setItems}
-					style={{ marginBottom: 25 }}
-					placeholder='Select Your School District'
-				/>
 
 				<CustomButton
 					label={"Register"}
