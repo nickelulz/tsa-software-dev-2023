@@ -3,7 +3,8 @@ import React, { useState, useContext } from "react";
 // Theming
 import { MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
-import { ThemeContext, Colors, APP_NAME, APP_NAME_SHORT } from "../Config";
+import { APP_NAME, APP_NAME_SHORT } from "../Config";
+import { ThemeContext, Colors } from '../Theme'
 
 // Components
 import { SafeAreaView, View, Text, TouchableOpacity, Image } from "react-native";
@@ -12,8 +13,8 @@ import CustomButton from "../components/CustomButton";
 import InputField from "../components/InputField";
 
 const Register = ({ navigation }) => {
-	const { theme } = useContext(ThemeContext);
-	let activeColors = Colors[theme.mode];
+	const { current_theme } = React.useContext(ThemeContext);
+	const theme = Colors[current_theme.mode];
 
 	const [open, setOpen] = useState(false);
 	const [value, setValue] = useState(null);
@@ -21,7 +22,7 @@ const Register = ({ navigation }) => {
 	return (
 		<SafeAreaView
 			style={{
-				backgroundColor: activeColors.primary,
+				backgroundColor: theme.primary,
 				flex: 1,
 				justifyContent: "center",
 			}}
@@ -31,12 +32,12 @@ const Register = ({ navigation }) => {
 				<Text style={{
 					fontSize: 28,
 					fontWeight: "500",
-					color: activeColors.tint,
+					color: theme.tint,
 					marginBottom: 30,
 				}}>Create an account with {APP_NAME}!</Text>
 
 				<InputField
-					selectionColor={activeColors.tint}
+					selectionColor={theme.tint}
 					label={"Email Addressz"}
 					icon={
 						<FontAwesome5

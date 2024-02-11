@@ -3,12 +3,13 @@ import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import DashboardScreen from "../screens/DashboardScreen";
 
 // Theme/Colors
-import { ThemeContext } from "../Config";
+import { ThemeContext, Colors } from "../Theme";
 
 const Tab = createBottomTabNavigator();
 
 export default function Footer() {
-	const { theme } = React.useContext(ThemeContext);
+	const { current_theme } = React.useContext(ThemeContext);
+	const theme = Colors[current_theme.mode];
 
 	return (
 		<Tab.Navigator

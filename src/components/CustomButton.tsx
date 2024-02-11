@@ -2,11 +2,12 @@ import { Text, TouchableOpacity } from "react-native";
 import React, { useContext } from "react";
 
 // Theme/Colors
-import { ThemeContext } from "../Config";
+import { ThemeContext, Colors } from "../Theme";
 
 export default function CustomButton({ label, onPress }) {
-	const { theme } = useContext(ThemeContext);
-	
+	const { current_theme } = React.useContext(ThemeContext);
+	const theme = Colors[current_theme.mode];
+
 	return (
 		<TouchableOpacity
 			onPress={onPress}

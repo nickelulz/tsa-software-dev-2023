@@ -11,14 +11,15 @@ import { MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 
 // Theme/Colors
-import { ThemeContext } from "../Config";
+import { ThemeContext, Colors } from "../Theme";
 
 // Components
 import CustomButton from "../components/CustomButton";
 import InputField from "../components/InputField";
 
 const LoginScreen = ({ navigation }) => {
-	const { theme } = React.useContext(ThemeContext);
+	const { current_theme } = React.useContext(ThemeContext);
+	const theme = Colors[current_theme.mode];
 
 	return (
 		<SafeAreaView style={{

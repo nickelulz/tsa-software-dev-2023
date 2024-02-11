@@ -1,11 +1,12 @@
-import React, { useState, useEffect, createContext } from "react";
-import { Appearance } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import * as SplashScreen from "expo-splash-screen";
+import React from "react"
+import { Appearance } from "react-native"
+import { NavigationContainer } from "@react-navigation/native"
+import { createStackNavigator } from "@react-navigation/stack"
+import * as SplashScreen from "expo-splash-screen"
 
-import { ThemeContext } from './src/Config'
-import Footer from "./src/components/Footer";
+import { ThemeContext, Colors } from './src/Theme.tsx'
+
+import Footer from "./src/components/Footer"
 
 // Screens
 import LoginScreen from './src/screens/LoginScreen'
@@ -28,7 +29,8 @@ const App = () => {
 	 * Appearance.getColorScheme() will return the current
 	 * theme of the device and save it in theme state.
 	 */
-	const [theme, setTheme] = useState({ mode: Appearance.getColorScheme() });
+	const [theme, setTheme] = React.useState(
+		{ mode: Appearance.getColorScheme() });
 
 	/*
 	 * Takes newTheme as a parameter if newTheme
@@ -44,7 +46,7 @@ const App = () => {
 		}
 
 		setTheme(newTheme);
-		storeData("homeTheme", newTheme);	
+		React.storeData("homeTheme", newTheme);
 	};
 
 	/*
@@ -72,7 +74,7 @@ const App = () => {
 	};
 
 	// Called when the app starts
-	useEffect(() => {
+	React.useEffect(() => {
 		fetchStoredTheme();
 
 		/*
