@@ -5,14 +5,16 @@ import InputField from "../components/InputField";
 import { SafeAreaView, View, Text, TouchableOpacity, Image } from "react-native";
 
 // Theme/Colors
-import { ThemeContext, APP_NAME } from "../Config";
+import { APP_NAME } from "../Config";
+import { ThemeContext, Colors } from '../Theme'
 
 // Icons
 import { MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 
 const LoginScreen = ({ navigation }) => {
-	const { theme } = React.useContext(ThemeContext);
+	const { current_theme } = React.useContext(ThemeContext);
+	const theme = Colors[current_theme.mode];
 
 	return (
 		<SafeAreaView style={{

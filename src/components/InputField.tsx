@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, TouchableOpacity, TextInput } from "react-native";
 
 // Theme/Colors
-import { ThemeContext } from "../Config";
+import { ThemeContext, Colors } from "../Theme";
 
 export default function InputField({
 	label,
@@ -12,7 +12,8 @@ export default function InputField({
 	fieldButtonLabel,
 	fieldButtonFunction,
 }) {
-	const { theme } = React.useContext(ThemeContext);
+	const { current_theme } = React.useContext(ThemeContext);
+	const theme = Colors[current_theme.mode];
 
 	return (
 		<View
